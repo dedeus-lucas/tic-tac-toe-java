@@ -2,8 +2,17 @@ public class Main {
     public static void main(String[] args) {
         Board board = new Board();
 
-        board.makeMove(0, 0, 'X');
-        board.makeMove(1, 1, 'O');
+        // Primeira jogada
+        if (board.isPositionEmpty(0, 0)) {
+            board.makeMove(0, 0, 'X');
+        }
+
+        // Tentando jogar na mesma posição
+        if (board.isPositionEmpty(0, 0)) {
+            board.makeMove(0, 0, 'O');
+        } else {
+            System.out.println("Posição já ocupada!");
+        }
 
         board.printBoard();
     }

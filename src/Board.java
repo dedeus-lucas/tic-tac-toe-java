@@ -26,4 +26,8 @@ public class Board {
     public void makeMove(int row, int col, char player) {
         grid[row][col] = player;
     }
+
+    public boolean isPositionEmpty(int row, int col) {
+        return grid[row][col] == ' ';
+    }
 }
