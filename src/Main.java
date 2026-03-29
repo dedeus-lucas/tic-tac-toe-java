@@ -1,19 +1,11 @@
 public class Main {
     public static void main(String[] args) {
-        Board board = new Board();
+        Game game = new Game();
 
-        // Primeira jogada
-        if (board.isPositionEmpty(0, 0)) {
-            board.makeMove(0, 0, 'X');
-        }
+        System.out.println("Jogador atual: " + game.getCurrentPlayer());
 
-        // Tentando jogar na mesma posição
-        if (board.isPositionEmpty(0, 0)) {
-            board.makeMove(0, 0, 'O');
-        } else {
-            System.out.println("Posição já ocupada!");
-        }
+        game.switchPlayer();
 
-        board.printBoard();
+        System.out.println("Jogador atual: " + game.getCurrentPlayer());
     }
 }
