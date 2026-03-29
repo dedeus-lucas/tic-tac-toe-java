@@ -3,10 +3,13 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Game game = new Game();
+        Board board = game.getBoard();
         Scanner scanner = new Scanner(System.in);
 
+        System.out.println("=== JOGO DA VELHA ===");
+
         while (true) {
-            game.getBoard().printBoard();
+            board.printBoard();
 
             System.out.println("Jogador " + game.getCurrentPlayer() + ", informe linha e coluna (1 a 3):");
 
@@ -18,7 +21,7 @@ public class Main {
                     row = scanner.nextInt();
                 } else {
                     System.out.println("Entrada inválida! Digite números de 1 a 3.");
-                    scanner.next(); // limpa entrada inválida
+                    scanner.next();
                     continue;
                 }
 
@@ -30,30 +33,28 @@ public class Main {
                     continue;
                 }
 
-                // valida intervalo (1 a 3)
                 if (row >= 1 && row <= 3 && col >= 1 && col <= 3) {
-                    row = row - 1;
-                    col = col - 1;
+                    row--;
+                    col--;
                     break;
                 } else {
                     System.out.println("Valores fora do intervalo! Use números de 1 a 3.");
                 }
             }
 
-            if (game.getBoard().isPositionEmpty(row, col)) {
-                char player = game.getCurrentPlayer();
+            char player = game.getCurrentPlayer();
 
-                game.getBoard().makeMove(row, col, player);
+            if (board.isPositionEmpty(row, col)) {
+                board.makeMove(row, col, player);
 
-                // verifica vitória ANTES de trocar jogador
-                if (game.getBoard().checkWin(player)) {
-                    game.getBoard().printBoard();
+                if (board.checkWin(player)) {
+                    board.printBoard();
                     System.out.println("Jogador " + player + " venceu!");
                     break;
                 }
 
-                if (game.getBoard().isFull()) {
-                    game.getBoard().printBoard();
+                if (board.isFull()) {
+                    board.printBoard();
                     System.out.println("Empate!");
                     break;
                 }
@@ -63,5 +64,7 @@ public class Main {
                 System.out.println("Posição já ocupada! Tente novamente.");
             }
         }
+
+        scanner.close();
     }
 }
