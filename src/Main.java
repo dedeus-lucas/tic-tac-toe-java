@@ -52,6 +52,12 @@ public class Main {
                     break;
                 }
 
+                if (game.getBoard().isFull()) {
+                    game.getBoard().printBoard();
+                    System.out.println("Empate!");
+                    break;
+                }
+
                 game.switchPlayer();
             } else {
                 System.out.println("Posição já ocupada! Tente novamente.");
