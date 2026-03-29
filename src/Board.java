@@ -30,4 +30,40 @@ public class Board {
     public boolean isPositionEmpty(int row, int col) {
         return grid[row][col] == ' ';
     }
+
+    public boolean checkWin(char player) {
+        // verificar linhas
+        for (int i = 0; i < 3; i++) {
+            if (grid[i][0] == player &&
+                    grid[i][1] == player &&
+                    grid[i][2] == player) {
+                return true;
+            }
+        }
+
+        // verificar colunas
+        for (int j = 0; j < 3; j++) {
+            if (grid[0][j] == player &&
+                    grid[1][j] == player &&
+                    grid[2][j] == player) {
+                return true;
+            }
+        }
+
+        // diagonal principal
+        if (grid[0][0] == player &&
+                grid[1][1] == player &&
+                grid[2][2] == player) {
+            return true;
+        }
+
+        // diagonal secundária
+        if (grid[0][2] == player &&
+                grid[1][1] == player &&
+                grid[2][0] == player) {
+            return true;
+        }
+
+        return false;
+    }
 }

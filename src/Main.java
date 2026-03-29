@@ -41,7 +41,17 @@ public class Main {
             }
 
             if (game.getBoard().isPositionEmpty(row, col)) {
-                game.getBoard().makeMove(row, col, game.getCurrentPlayer());
+                char player = game.getCurrentPlayer();
+
+                game.getBoard().makeMove(row, col, player);
+
+                // verifica vitória ANTES de trocar jogador
+                if (game.getBoard().checkWin(player)) {
+                    game.getBoard().printBoard();
+                    System.out.println("Jogador " + player + " venceu!");
+                    break;
+                }
+
                 game.switchPlayer();
             } else {
                 System.out.println("Posição já ocupada! Tente novamente.");
