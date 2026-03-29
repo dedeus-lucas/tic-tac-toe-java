@@ -1,5 +1,5 @@
 public class Board {
-    private char[][] grid;
+    private final char[][] grid;
 
     public Board() {
         grid = new char[3][3];
@@ -21,5 +21,9 @@ public class Board {
             );
             if (i < 2) System.out.println("--+---+--");
         }
+    }
+
+    public void makeMove(int row, int col, char player) {
+        grid[row][col] = player;
     }
 }
